@@ -1,8 +1,11 @@
 import axios from "axios";
 import { storage } from "../utils/storage";
 
+// Sử dụng environment variable hoặc fallback
+const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+
 const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: baseURL,
   headers: {
     "Content-Type": "application/json",
   },

@@ -14,6 +14,10 @@ export default defineConfig({
       ],
     },
   },
+  // Environment variables configuration
+  define: {
+    __APP_ENV__: JSON.stringify(process.env.NODE_ENV),
+  },
   // Clear token when starting dev server
   server: {
     setupMiddleware(server) {
