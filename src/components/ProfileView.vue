@@ -920,9 +920,10 @@ const getImageUrl = (img) => {
   // Nếu đã là URL đầy đủ
   if (img.startsWith("http")) return img;
   // Nếu là đường dẫn tuyệt đối
-  if (img.startsWith("/")) return `http://localhost:8080${img}`;
+  const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+  if (img.startsWith("/")) return `${backend}${img}`;
   // Nếu là tên file, thêm base path
-  return `http://localhost:8080/uploads/posts/${img}`;
+  return `${backend}/uploads/posts/${img}`;
 };
 
 const canDeletePost = (post) => user.value?.id === post.authorId;

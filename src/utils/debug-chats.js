@@ -7,11 +7,12 @@ window.debugChats = async function () {
   }
 
   const user = JSON.parse(userRaw);
+  const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
 
   // Check API endpoints
   try {
     // Test solo chats
-    const soloUrl = `http://localhost:8080/trendy/chat/solo?userId=${user.id}`;
+    const soloUrl = `${backend}/trendy/chat/solo?userId=${user.id}`;
 
     const soloRes = await fetch(soloUrl, {
       headers: {
@@ -21,7 +22,7 @@ window.debugChats = async function () {
     const soloData = await soloRes.json();
 
     // Test group chats
-    const groupUrl = `http://localhost:8080/trendy/chat/group?userId=${user.id}`;
+    const groupUrl = `${backend}/trendy/chat/group?userId=${user.id}`;
 
     const groupRes = await fetch(groupUrl, {
       headers: {

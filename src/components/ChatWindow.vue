@@ -1370,9 +1370,10 @@ const onFileSelected = async (ev) => {
         const fileName = response.data.fileName;
 
         // Ensure full URL if relative path
+        const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
         const fullUrl = fileUrl.startsWith("http")
           ? fileUrl
-          : `http://localhost:8080${fileUrl}`;
+          : `${backend}${fileUrl}`;
 
         // Store attachment info
         attachmentUrls.push({

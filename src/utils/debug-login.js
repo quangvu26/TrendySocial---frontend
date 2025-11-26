@@ -4,9 +4,10 @@ window.debugLogin = async function () {
   const prefix = `trendy_${port}_`;
   const token = localStorage.getItem(prefix + "token");
   const user = localStorage.getItem(prefix + "user");
+  const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
 
   try {
-    const response = await fetch("http://localhost:8080/trendy/auth/login", {
+    const response = await fetch(`${backend}/trendy/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +36,7 @@ window.debugLogin = async function () {
 };
 
 window.debugGoogleLogin = async function () {
-  const backend = "http://localhost:8080";
+  const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
   const frontend = window.location.origin;
 
   console.log(

@@ -2,7 +2,8 @@ import axios from "axios";
 import { storage } from "../utils/storage";
 
 // Sử dụng environment variable hoặc fallback
-const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+const baseURL =
+  import.meta.env.VITE_API_BASE_URL || "https://trendysocialback.onrender.com";
 
 const api = axios.create({
   baseURL: baseURL,

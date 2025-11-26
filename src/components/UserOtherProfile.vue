@@ -524,8 +524,9 @@ const currentUserId = ref(storage.getUser()?.id || null);
 const getImageUrl = (img) => {
   if (!img) return "";
   if (img.startsWith("http")) return img;
-  if (img.startsWith("/")) return `http://localhost:8080${img}`;
-  return `http://localhost:8080/uploads/posts/${img}`;
+  const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+  if (img.startsWith("/")) return `${backend}${img}`;
+  return `${backend}/uploads/posts/${img}`;
 };
 
 const formatDate = (d) => {
