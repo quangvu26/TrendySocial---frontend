@@ -1,7 +1,7 @@
 <template>
   <div
     class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
-    :style="{ backgroundImage: `url(/images/FormLogin/background_form.png)` }"
+    :style="{ backgroundImage: `url(${backgroundImg})` }"
   >
     <div
       class="w-full max-w-5xl bg-white/95 rounded-2xl overflow-hidden shadow-2xl mx-4"
@@ -11,7 +11,7 @@
           class="hidden md:flex items-center justify-center bg-orange-50 p-10"
         >
           <img
-            src="/images/FormLogin/Social update-bro.svg"
+            :src="socialImg"
             alt="Illustration"
             class="max-w-full max-h-[420px] object-contain"
           />
@@ -23,7 +23,7 @@
               class="w-20 h-20 rounded-full bg-[#FF5630] flex items-center justify-center"
             >
               <img
-                src="/images/Logo/Logo_white_nobackground.png"
+                :src="logoImg"
                 class="w-14 h-14 object-contain"
                 alt="Logo"
               />
@@ -120,6 +120,9 @@ import { validateEmail } from "../utils/validators";
 import { handleAuthError } from "../utils/errorHandler";
 import { checkEmailExists } from "../utils/asyncChecks";
 import { storage } from "../utils/storage";
+import backgroundImg from "/public/images/FormLogin/background_form.png";
+import socialImg from "/public/images/FormLogin/Social update-bro.svg";
+import logoImg from "/public/images/Logo/Logo_white_nobackground.png";
 
 const router = useRouter();
 const email = ref("");

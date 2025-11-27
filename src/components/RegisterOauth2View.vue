@@ -1,7 +1,7 @@
 <template>
   <div
     class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
-    :style="{ backgroundImage: `url(/images/FormLogin/background_form.png)` }"
+    :style="{ backgroundImage: `url(${backgroundImg})` }"
   >
     <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6">
       <div class="flex flex-col items-center space-y-3 mb-6">
@@ -9,7 +9,7 @@
           class="w-16 h-16 rounded-full bg-[#FF5630] flex items-center justify-center"
         >
           <img
-            src="/images/Logo/Logo_white_nobackground.png"
+            :src="logoImg"
             class="w-10 h-10 object-contain"
             alt="Logo"
           />
@@ -115,6 +115,8 @@ import { saveToken, getOAuthUser, clearOAuthUser } from "../utils/authStorage";
 import { validatePassword, validateId } from "../utils/validators";
 import { handleAuthError } from "../utils/errorHandler";
 import { checkIdExists } from "../utils/asyncChecks";
+import backgroundImg from "/public/images/FormLogin/background_form.png";
+import logoImg from "/public/images/Logo/Logo_white_nobackground.png";
 
 const router = useRouter();
 

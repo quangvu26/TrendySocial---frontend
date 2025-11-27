@@ -14,7 +14,7 @@
         @click="fileInput.click()"
       >
         <img
-          src="/images/New/Image upload-bro.svg"
+          :src="uploadImg"
           alt="Upload"
           class="w-32 h-32 mx-auto mb-4 object-contain"
         />
@@ -210,6 +210,7 @@
 import { ref, computed, onMounted } from "vue";
 import { storage } from "../utils/storage";
 import api from "../api/api";
+import uploadImg from "/public/images/New/Image upload-bro.svg";
 
 const emit = defineEmits(["close"]);
 

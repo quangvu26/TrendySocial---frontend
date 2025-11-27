@@ -10,7 +10,7 @@
           <div class="relative w-10 h-10">
             <div class="absolute inset-0 bg-[#FF5630] rounded-full"></div>
             <img
-              src="/images/Logo/Logo_white_nobackground.png"
+              :src="logoImg"
               alt="Loopa Logo"
               class="relative w-full h-full p-1 object-contain"
             />
@@ -579,6 +579,7 @@ import socketService from "../api/socketService";
 import api from "../api/api";
 import { storage } from "../utils/storage";
 import notificationService from "../api/notificationService";
+import logoImg from "/public/images/Logo/Logo_white_nobackground.png";
 
 // State management
 const chatConnectionState = ref("disconnected");

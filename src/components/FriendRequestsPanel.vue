@@ -29,7 +29,7 @@
             @click="emit('viewUserProfile', req.from)"
           >
             <img
-              src="/images/Avatar/male_avatar.png"
+              :src="maleAvatarImg"
               class="w-10 h-10 rounded-full object-cover"
             />
             <div class="ml-3">
@@ -63,6 +63,8 @@
 
 <script setup>
 import { computed, reactive } from "vue";
+import maleAvatarImg from "/public/images/Avatar/male_avatar.png";
+
 const props = defineProps({ requests: { type: Array, default: () => [] } });
 const emit = defineEmits(["accept", "reject", "close", "viewUserProfile"]);
 

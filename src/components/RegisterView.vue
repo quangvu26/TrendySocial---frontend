@@ -1,7 +1,7 @@
 <template>
   <div
     class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
-    :style="{ backgroundImage: `url(/images/FormLogin/background_form.png)` }"
+    :style="{ backgroundImage: `url(${backgroundImg})` }"
   >
     <div
       class="w-full max-w-3xl bg-white/95 rounded-2xl overflow-hidden shadow-2xl mx-4"
@@ -13,7 +13,7 @@
               class="w-16 h-16 rounded-full bg-[#FF5630] flex items-center justify-center"
             >
               <img
-                src="/images/Logo/Logo_white_nobackground.png"
+                :src="logoImg"
                 class="w-10 h-10 object-contain"
                 alt="Logo"
               />
@@ -144,7 +144,7 @@
           <div class="flex flex-col md:flex-row gap-6 items-center">
             <div class="flex-1">
               <img
-                src="/images/FormLogin/Blowing out Birthday candles-pana.svg"
+                :src="birthdayImg"
                 alt="Birthday"
                 class="w-full h-auto"
               />
@@ -181,7 +181,7 @@
           <div class="flex flex-col md:flex-row gap-6 items-center">
             <div class="flex-1">
               <img
-                src="/images/FormLogin/Mail sent-bro.svg"
+                :src="mailImg"
                 alt="Email Verification"
                 class="w-full h-auto"
               />
@@ -268,6 +268,10 @@ import {
 } from "../utils/validators";
 import { handleAuthError } from "../utils/errorHandler";
 import { checkBothUnique } from "../utils/asyncChecks";
+import backgroundImg from "/public/images/FormLogin/background_form.png";
+import logoImg from "/public/images/Logo/Logo_white_nobackground.png";
+import birthdayImg from "/public/images/FormLogin/Blowing out Birthday candles-pana.svg";
+import mailImg from "/public/images/FormLogin/Mail sent-bro.svg";
 
 const router = useRouter();
 const currentStep = ref(1);

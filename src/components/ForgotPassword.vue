@@ -1,7 +1,7 @@
 <template>
   <div
     class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
-    :style="{ backgroundImage: `url(/images/FormLogin/background_form.png)` }"
+    :style="{ backgroundImage: `url(${backgroundImg})` }"
   >
     <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6">
       <h3 class="text-center text-lg font-semibold mb-4">Quên mật khẩu</h3>
@@ -120,6 +120,7 @@ import {
   validatePasswordMatch,
 } from "../utils/validators";
 import { handleAuthError } from "../utils/errorHandler";
+import backgroundImg from "/public/images/FormLogin/background_form.png";
 import { checkEmailExists } from "../utils/asyncChecks";
 
 const router = useRouter();
