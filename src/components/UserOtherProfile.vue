@@ -1070,10 +1070,7 @@ const loadPostComments = async (postId) => {
     });
 
     if (commentsRes.data) {
-      console.log(
-        "📝 Raw Comments from API:",
-        JSON.stringify(commentsRes.data, null, 2)
-      );
+      // Đã ẩn log Raw Comments from API
       const enrichedComments = await Promise.all(
         commentsRes.data.map(async (c) => {
           try {

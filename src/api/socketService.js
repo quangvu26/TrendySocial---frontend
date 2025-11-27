@@ -2,7 +2,8 @@ import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import { storage } from "../utils/storage";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://trendysocialback.onrender.com";
+const BACKEND_URL =
+  import.meta.env.VITE_BACKEND_URL || "https://trendysocialback.onrender.com";
 
 let stompClient = null;
 
@@ -107,14 +108,31 @@ const publish = (destination, payload = {}, headers = {}) => {
   }
 };
 
-const subscribeToPrivate = (userId, cb) =>
-  subscribe(`/topic/private.${userId}`, cb);
+const subscribeToPrivate = (userId, cb) => {
+  if (!userId) {
+    console.warn("[socketService] No userId provided for subscribeToPrivate");
+    return null;
+  }
+  return subscribe(`/topic/private.${userId}`, cb);
+};
 
-const subscribeToGroup = (maNhom, cb) =>
-  subscribe(`/topic/group.${maNhom}`, cb);
+const subscribeToGroup = (maNhom, cb) => {
+  if (!maNhom) {
+    console.warn("[socketService] No maNhom provided for subscribeToGroup");
+    return null;
+  }
+  return subscribe(`/topic/group.${maNhom}`, cb);
+};
 
-const subscribeToNotification = (userId, cb) =>
-  subscribe(`/topic/notification.${userId}`, cb);
+const subscribeToNotification = (userId, cb) => {
+  if (!userId) {
+    console.warn(
+      "[socketService] No userId provided for subscribeToNotification"
+    );
+    return null;
+  }
+  return subscribe(`/topic/notification.${userId}`, cb);
+};
 
 const getClient = () => stompClient;
 
