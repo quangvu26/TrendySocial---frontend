@@ -1,6 +1,5 @@
 import "./global-polyfill";
-import "./utils/migrate-storage"; // Must run FIRST
-
+import "./utils/migrate-storage"; 
 import { createApp } from "vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -12,8 +11,6 @@ import { clearAllAuth } from "./utils/authStorage";
 import { testFriendStatus } from "./composables/useFriendStatusDebug";
 
 clearAllAuth();
-
-// Attach debug helper to window
 if (typeof window !== "undefined") {
   window.testFriendStatus = testFriendStatus;
 }
