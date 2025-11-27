@@ -917,12 +917,12 @@ const formatDate = (date) => {
 
 const getImageUrl = (img) => {
   if (!img) return "";
-  // Nếu đã là URL đầy đủ
-  if (img.startsWith("http")) return img;
-  // Nếu là đường dẫn tuyệt đối
+  // Nếu đã là URL Cloudinary hoặc URL đầy đủ
+  if (img.startsWith("http://") || img.startsWith("https://")) return img;
+  // Nếu là đường dẫn tuyệt đối (cũ)
   const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
   if (img.startsWith("/")) return `${backend}${img}`;
-  // Nếu là tên file, thêm base path
+  // Nếu là tên file, thêm base path (cũ)
   return `${backend}/uploads/posts/${img}`;
 };
 

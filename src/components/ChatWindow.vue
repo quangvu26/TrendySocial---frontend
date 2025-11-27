@@ -1370,10 +1370,13 @@ const onFileSelected = async (ev) => {
         const fileName = response.data.fileName;
 
         // Ensure full URL if relative path
-        const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
-        const fullUrl = fileUrl.startsWith("http")
-          ? fileUrl
-          : `${backend}${fileUrl}`;
+
+        // Ưu tiên dùng URL Cloudinary trả về từ backend
+        let fullUrl = fileUrl;
+        if (!fileUrl.startsWith("http://") && !fileUrl.startsWith("https://")) {
+          const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+          fullUrl = `${backend}${fileUrl}`;
+        }
 
         // Store attachment info
         attachmentUrls.push({
