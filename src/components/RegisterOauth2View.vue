@@ -8,11 +8,7 @@
         <div
           class="w-16 h-16 rounded-full bg-[#FF5630] flex items-center justify-center"
         >
-          <img
-            :src="logoImg"
-            class="w-10 h-10 object-contain"
-            alt="Logo"
-          />
+          <img :src="logoImg" class="w-10 h-10 object-contain" alt="Logo" />
         </div>
         <h2 class="text-2xl font-bold text-[#FF5630]">LOOPA</h2>
       </div>

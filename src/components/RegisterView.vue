@@ -12,11 +12,7 @@
             <div
               class="w-16 h-16 rounded-full bg-[#FF5630] flex items-center justify-center"
             >
-              <img
-                :src="logoImg"
-                class="w-10 h-10 object-contain"
-                alt="Logo"
-              />
+              <img :src="logoImg" class="w-10 h-10 object-contain" alt="Logo" />
             </div>
             <h2 class="text-2xl font-bold text-[#FF5630]">LOOPA</h2>
           </div>
@@ -143,11 +139,7 @@
           <h3 class="text-xl font-medium mb-6">Ngày sinh</h3>
           <div class="flex flex-col md:flex-row gap-6 items-center">
             <div class="flex-1">
-              <img
-                :src="birthdayImg"
-                alt="Birthday"
-                class="w-full h-auto"
-              />
+              <img :src="birthdayImg" alt="Birthday" class="w-full h-auto" />
             </div>
             <form @submit.prevent="nextStep" class="flex-1 space-y-4 w-full">
               <input

@@ -22,11 +22,7 @@
             <div
               class="w-20 h-20 rounded-full bg-[#FF5630] flex items-center justify-center"
             >
-              <img
-                :src="logoImg"
-                class="w-14 h-14 object-contain"
-                alt="Logo"
-              />
+              <img :src="logoImg" class="w-14 h-14 object-contain" alt="Logo" />
             </div>
             <h2 class="text-2xl font-bold text-gray-900">LOOPA</h2>
             <p class="text-sm text-gray-600">Share the vibe, start the trend</p>

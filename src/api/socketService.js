@@ -2,7 +2,7 @@ import { Client } from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import { storage } from "../utils/storage";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "https://trendysocialback.onrender.com";
 
 let stompClient = null;
 
