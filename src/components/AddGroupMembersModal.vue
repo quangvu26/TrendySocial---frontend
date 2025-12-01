@@ -156,7 +156,8 @@ const closeModal = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
+  /* ✅ FIX: Set z-index higher than chat window (z-[9999]) */
+  z-index: 10000;
 }
 
 .modal-content {
