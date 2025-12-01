@@ -184,7 +184,19 @@ onMounted(() => {
   // Load notifications once on mount
   loadNotifications();
 
-  // Setup auto-refresh every 5 seconds (more efficient than polling on every render)
+  // ✅ FIX #7: Subscribe to realtime notifications via WebSocket
+  const notificationSub = socketService.subscribeToNotification(
+    currentUserId.value,
+    (notif) => {
+      console.log("📢 Realtime notification received:", notif);
+      // Add to top of list
+      if (notif && notif.idThongBao) {
+        notifications.value.unshift(notif);
+      }
+    }
+  );
+
+  // Still keep polling as backup every 5 seconds
   refreshInterval = setInterval(() => {
     loadNotifications();
   }, 5000);

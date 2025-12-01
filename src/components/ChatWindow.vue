@@ -141,7 +141,8 @@
       </div>
     </div>
 
-    <main class="flex-1 overflow-auto p-4 relative z-0" ref="msgList">
+    <!-- ✅ FIX LỖI 5: Z-index chat box - set z-50 để nằm trên cùng -->
+    <main class="flex-1 overflow-auto p-4 relative z-50" ref="msgList">
       <div
         v-if="displayedMessages.length === 0"
         class="text-center text-gray-400 mt-8"
@@ -374,7 +375,8 @@
       </button>
     </div>
 
-    <footer v-if="chat" class="p-3 border-t">
+    <!-- ✅ FIX LỖI 5: Footer z-index -->
+    <footer v-if="chat" class="p-3 border-t relative z-40">
       <div class="flex items-center space-x-2">
         <button @click="toggleEmoji" class="px-2 py-2 rounded">
           <i class="bi bi-emoji-smile text-xl"></i>
@@ -758,7 +760,10 @@ const text = computed({
 
 // Displayed messages (filter hidden messages)
 const displayedMessages = computed(() => {
-  return messages.value.filter((m) => !isMessageHidden(m.id));
+  // ✅ FIX #9: Filter out hidden messages + hidden by daDoc flag
+  return messages.value.filter(
+    (m) => !isMessageHidden(m.id) && m.daDoc !== true
+  );
 });
 
 const quickReactions = [
@@ -1374,7 +1379,8 @@ const onFileSelected = async (ev) => {
         // Ưu tiên dùng URL Cloudinary trả về từ backend
         let fullUrl = fileUrl;
         if (!fileUrl.startsWith("http://") && !fileUrl.startsWith("https://")) {
-          const backend = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+          const backend =
+            import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
           fullUrl = `${backend}${fileUrl}`;
         }
 
@@ -1512,10 +1518,24 @@ const addFriend = async () => {
 };
 
 // Hide conversation
-const hideConversation = () => {
+const hideConversation = async () => {
   showChatMenu.value = false;
-  if (confirm(`Ẩn cuộc trò chuyện với ${props.chat?.name}?`)) {
+  if (!confirm(`Ẩn cuộc trò chuyện với ${props.chat?.name}?`)) {
+    return;
+  }
+
+  try {
+    // ✅ FIX #10: Unpin all messages if group
+    if (props.chat.type === "group") {
+      await api.delete(`/trendy/chat/group/${props.chat.id}/unpin-all`);
+      console.log("✅ All pinned messages unpinned");
+    }
+
     emits("hide-chat", props.chat?.id);
+    alert("✅ Cuộc trò chuyện đã ẩn");
+  } catch (error) {
+    console.error("Hide chat failed:", error);
+    alert("Lỗi ẩn cuộc trò chuyện");
   }
 };
 

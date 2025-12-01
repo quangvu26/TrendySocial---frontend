@@ -134,6 +134,17 @@ const subscribeToNotification = (userId, cb) => {
   return subscribe(`/topic/notification.${userId}`, cb);
 };
 
+// ✅ FIX LỖI 2: Subscribe tới chatlist updates để auto refresh
+const subscribeToChatlistUpdates = (userId, cb) => {
+  if (!userId) {
+    console.warn(
+      "[socketService] No userId provided for subscribeToChatlistUpdates"
+    );
+    return null;
+  }
+  return subscribe(`/topic/chatlist.${userId}`, cb);
+};
+
 const getClient = () => stompClient;
 
 export default {
@@ -146,6 +157,7 @@ export default {
   subscribeToPrivate,
   subscribeToGroup,
   subscribeToNotification,
+  subscribeToChatlistUpdates,
   getClient,
   get client() {
     return stompClient;

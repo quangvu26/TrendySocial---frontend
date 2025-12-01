@@ -220,6 +220,7 @@
                     :disabled="isLoading"
                     class="flex-1 bg-[#FF5630] text-white py-2 rounded-md hover:bg-[#ff6647] disabled:opacity-50 transition"
                   >
+                    <!-- ✅ FIX LỖI 8: Remove placeholder, use proper text -->
                     {{ isLoading ? "Xác nhận..." : "Xác nhận" }}
                   </button>
                 </div>

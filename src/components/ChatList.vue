@@ -344,18 +344,23 @@ const createGroup = async () => {
     const current = storage.getUser();
     const userId = current?.id || current?.email;
 
-    // Create group with name, creator, and members
     const createRes = await chatService.createGroup(
       tenNhom.value,
       userId,
       selectedFriends.value
     );
+
+    // ✅ FIX #3: Check for success flag
+    if (!createRes.data.success) {
+      alert("Lỗi: " + (createRes.data.error || "Không thể tạo nhóm"));
+      return;
+    }
+
     const groupData = createRes.data;
-    const groupId = groupData.maNhom || groupData.id;
+    const groupId = groupData.maNhom;
 
     console.log("✅ Group created:", groupData);
 
-    // Emit event with full group data
     emit("group-created", {
       id: groupId,
       maNhom: groupId,
@@ -365,7 +370,6 @@ const createGroup = async () => {
       members: [userId, ...selectedFriends.value],
     });
 
-    // Reset and close panel
     const groupName = tenNhom.value;
     const memberCount = selectedFriends.value.length;
     tenNhom.value = "";
@@ -373,11 +377,13 @@ const createGroup = async () => {
     selectedFriends.value = [];
     showCreateGroup.value = false;
 
-    alert(`Đã tạo nhóm "${groupName}" với ${memberCount} thành viên`);
+    alert(
+      `✅ Tạo nhóm "${groupName}" với ${memberCount} thành viên thành công!`
+    );
   } catch (e) {
-    console.error("❌ Tạo nhóm thất bại", e);
-    const errorMsg = e.response?.data?.error || e.response?.data || e.message;
-    alert("Tạo nhóm thất bại: " + errorMsg);
+    console.error("❌ Create group failed:", e);
+    const errorMsg = e.response?.data?.error || e.message;
+    alert("Lỗi: " + errorMsg);
   }
 };
 </script>
